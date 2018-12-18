@@ -12,13 +12,7 @@ void setup() {
 
 void draw(){
   
-  if (c==1){
-    background(255,0,0);
-  }else if(c==2){
-    background(0,255,0);
-  }else if(c==3){
-    background(0,0,255);
-  }
+    background(255,0,c*500);
 }
 
 

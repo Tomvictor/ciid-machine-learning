@@ -3,6 +3,7 @@ from keras.callbacks import EarlyStopping
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.utils import to_categorical
+from numpy import argmax
 
 print("loading datasets..")
 train_df_2 = pd.read_csv('diabetes_data.csv')
@@ -19,7 +20,8 @@ print("one-hot encode target column")
 train_y_2 = to_categorical(train_df_2.diabetes)
 
 print("check that target column has been converted")
-print(train_y_2[0:5])
+print(train_y_2)
+
 
 print("create model")
 model_2 = Sequential()
@@ -55,3 +57,18 @@ print(testX.head())
 y_predictions = model_2.predict(testX)
 
 print(y_predictions)
+
+# y = argmax(y_predictions)
+# print(y)
+
+def decode(datum):
+    return argmax(datum)
+
+
+for i in range(y_predictions.shape[0]):
+    # datum = encoded_data[i]
+    # print('index: %d' % i)
+    # print('encoded datum: %s' % datum)
+    decoded_datum = decode(y_predictions[i])
+    print('decoded datum: %s' % decoded_datum)
+    print()
